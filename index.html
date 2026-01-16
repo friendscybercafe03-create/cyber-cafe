@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+    <title>FRIENDS COMPUTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --p-glow: #00f2ff; --s-glow: #7000ff; --bg: #060b13; --white: #fff; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        body { background: var(--bg); color: var(--white); }
+        
+        nav { background: rgba(0,0,0,0.9); padding:1rem 5%; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; border-bottom:2px solid var(--p-glow); }
+        .logo { font-family:'Orbitron'; font-size:1.5rem; color:var(--p-glow); }
+        nav ul { display:flex; list-style:none; }
+        nav ul li a { color:white; text-decoration:none; margin-left:20px; font-size:0.9rem; transition:0.3s; }
+        nav ul li a:hover { color:var(--p-glow); }
+
+        .hero { height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1350'); background-size:cover; }
+       .hero h1 { 
+  font-family: 'Orbitron'; 
+  font-size: 4.5rem; 
+  text-shadow: 0 0 20px #ff0000; 
+}
+        .hero h2 { font-family:'Orbitron'; font-size:2.5rem; text-shadow:0 0 20px var(--p-glow); }
+        .hero p { margin:20px 0; font-size:1.2rem; max-width:700px; }
+
+        .main-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px; padding:80px 10%; }
+        .feature-card { background:#101827; padding:40px; border-radius:15px; text-align:center; border:1px solid #222; transition:0.4s; }
+        .feature-card:hover { border-color:var(--p-glow); transform:translateY(-10px); }
+        .feature-card h2 { font-family:'Orbitron'; color:var(--p-glow); margin-bottom:15px; }
+        .btn { display:inline-block; padding:10px 25px; background:var(--p-glow); color:black; text-decoration:none; font-weight:700; border-radius:5px; margin-top:20px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">FUTURE READY DIGITAL <span>_CENTER</span></div>
+        <ul>
+            <li><a href="25.html">GOVT SERVICES</a></li>
+            <li><a href="23.html">COMPUTER COURSES</a></li>
+            <li><a href="24.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>FRIENDS COMPUTER </h1>
+    <h2>LOK MITRA KENDRA & CYBER CAFE & COMPUTER CENTER</h2>
+        <p>Your one-stop destination for Government Services, Professional Computer Education, and High-Speed Cyber Work.</p>
+        <a href="govt.html" class="btn">GET STARTED</a>
+    </section>
+
+    <div class="main-grid">
+        <div class="feature-card">
+
+            <h2>LOK MITRA</h2>
+            <p> PAN, Passport & all CSC Govt. Services with high precision.</p>
+            <button class="btn" onclick="window.location.href='22.html';">
+    
+    View Services
+</button>
+        </div>
+        <div class="feature-card">
+            <h2>ACADEMY</h2>
+            <p>DCA, PGDCAMaster Basic,  Graphic Design, and Web Development.</p>
+            <a href="courses.html" class="btn">Explore Courses</a>
+        </div>
+        <div class="feature-card">
+            <h2>CYBER HUB</h2>
+            <p>High-speed internet, Online forms, and Premium Printing solutions.</p>
+            <a href="contact.html" class="btn">Visit Us</a>
+        </div>
+    </div>
+<section style="padding:100px 10%; background:#060b13;">
+    <h2 style="font-family:'Orbitron'; text-align:center; color:#ffcc00; font-size:2.5rem; margin-bottom:50px;">LOK MITRA TERMINAL</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px;">
+        <div style="background:#162235; padding:30px; border-radius:10px; border-left:5px solid #ffcc00;">
+            <h3 style="color:#ffcc00;">ALL TYPES OF KYC</h3>
+            <p style="color:#ccc; font-size:0.9rem; margin-top:10px;">Update Mobile no. , Address, and PVC Card Booking.</p>
+        </div>
+        <div style="background:#162235; padding:30px; border-radius:10px; border-left:5px solid #ffcc00;">
+            <h3 style="color:#ffcc00;">DRIVING LICENCE</h3>
+            <p style="color:#ccc; font-size:0.9rem; margin-top:10px;">All type of licence were apply <br>here.</p>
+        </div>
+        <div style="background:#162235; padding:30px; border-radius:10px; border-left:5px solid #ffcc00;">
+            <h3 style="color:#ffcc00;">Revenue Dept</h3>
+            <p style="color:#ccc; font-size:0.9rem; margin-top:10px;">Income, Caste, and Domicile Certificates.</p>
+        </div>
+    </div>
+</section>
+
+
+
+<section style="padding:100px 10%; display:grid; grid-template-columns:1fr 1fr; gap:50px;">
+    <div>
+        <h2 style="font-family:'Orbitron'; color:#7000ff; margin-bottom:20px;">CONTACT US</h2>
+        <p>Friends Computer</p>
+        <p>?? +91 98XXX XXXXX</p>
+        <p>friendscomputer@gmail.com</p>
+        <br>
+        <h3 style="color:#00f2ff;">NORMAL WORK HOURS</h3>
+        <p>Mon - Sat: 09:00 AM - 08:00 PM</p>
+    </div>
+    <div style="background:#101827; padding:30px; border-radius:15px;">
+        <h3>Inquiry Form</h3>
+        <input type="text" placeholder="Your Name" style="width:100%; padding:10px; margin:10px 0; background:#060b13; color:white; border:1px solid #333;">
+        <textarea placeholder="Your Message" style="width:100%; padding:10px; margin:10px 0; background:#060b13; color:white; border:1px solid #333; height:100px;"></textarea>
+        <button style="width:100%; padding:10px; background:#7000ff; border:none; color:white; font-weight:700; cursor:pointer;">Send Message</button>
+    </div>
+</section>
+</body>
+</html>
+
+
+
+
+
