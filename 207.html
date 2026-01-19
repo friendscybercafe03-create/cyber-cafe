@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER HUB | FRIENDS COMPUTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --p-glow: #00f2ff; --s-glow: #7000ff; --bg: #03070d; --white: #fff; }
+        
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--white); 
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- 3D Background Canvas --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a192f 0%, #03070d 100%);
+        }
+
+        nav { 
+            background: rgba(0,0,0,0.8); 
+            backdrop-filter: blur(10px);
+            padding:1rem 5%; 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            position:sticky; 
+            top:0; 
+            z-index:100; 
+            border-bottom:1px solid var(--p-glow); 
+        }
+
+        .logo { font-family:'Orbitron'; font-size:1.5rem; color:var(--p-glow); text-shadow: 0 0 10px var(--p-glow); text-decoration: none; }
+        nav ul { display:flex; list-style:none; }
+        nav ul li a { color:white; text-decoration:none; margin-left:20px; font-size:0.9rem; transition:0.3s; }
+        nav ul li a:hover { color:var(--p-glow); }
+
+        .hub-header {
+            padding: 80px 10% 40px;
+            text-align: center;
+        }
+
+        .hub-header h1 {
+            font-family: 'Orbitron';
+            font-size: 3.5rem;
+            color: #ffcc00;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+            margin-bottom: 15px;
+        }
+
+        /* --- Services Grid --- */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 40px 10%;
+        }
+
+        .hub-card {
+            background: rgba(16, 24, 39, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .hub-card:hover {
+            border-color: var(--p-glow);
+            transform: translateY(-10px);
+            background: rgba(16, 24, 39, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.15);
+        }
+
+        .hub-card h3 {
+            font-family: 'Orbitron';
+            color: var(--p-glow);
+            margin-bottom: 15px;
+        }
+
+        .hub-card p { color: #cbd5e1; font-size: 0.95rem; }
+
+        /* --- Price Table Section --- */
+        .pricing-section {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .price-table {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: rgba(16, 24, 39, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .price-table th, .price-table td {
+            padding: 15px;
+            border-bottom: 1px solid #222;
+            text-align: left;
+        }
+
+        .price-table th { background: rgba(0, 242, 255, 0.1); color: var(--p-glow); font-family: 'Orbitron'; }
+
+        /* --- Location Section --- */
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 60px 10%;
+        }
+
+        .info-box { flex: 1; min-width: 300px; }
+        .map-box { flex: 1; min-width: 300px; height: 350px; border-radius: 20px; overflow: hidden; border: 2px solid var(--p-glow); }
+
+        .btn-call {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, var(--p-glow), var(--s-glow));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: 'Orbitron';
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-call:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--p-glow); }
+
+        footer { text-align: center; padding: 40px; color: #555; border-top: 1px solid #111; }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <a href="index.html" class="logo">FUTURE READY <span>_HUB</span></a>
+        
+    </nav>
+
+    <header class="hub-header">
+        <h1>CYBER HUB STATION</h1>
+        <p>Ultra-Fast Connectivity & High-End Digital Solutions for the Modern World.</p>
+    </header>
+
+    <div class="services-container">
+        <div class="hub-card">
+            <h3>HIGH-SPEED NET</h3>
+            <p>Fiber-optic broadband for lag-free browsing, gaming, and heavy downloads.</p>
+        </div>
+        <div class="hub-card">
+            <h3>HD PRINTING</h3>
+            <p>Premium laser printing, colorful brochures, and high-quality document scanning.</p>
+        </div>
+        <div class="hub-card">
+            <h3>TECH SUPPORT</h3>
+            <p>On-spot PC troubleshooting, software installation, and virus removal.</p>
+        </div>
+    </div>
+
+    <section class="pricing-section">
+        <h2 style="font-family:'Orbitron'; color:var(--s-glow);">STATION TARIFF</h2>
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Internet Surfing (1 Hour)</td>
+                    <td>?30</td>
+                </tr>
+                <tr>
+                    <td>B&W Printing (Per Page)</td>
+                    <td>?5</td>
+                </tr>
+                <tr>
+                    <td>Color Printing (Photo Paper)</td>
+                    <td>?20+</td>
+                </tr>
+                <tr>
+                    <td>Document Scanning (PDF)</td>
+                    <td>?10</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="contact-flex">
+        <div class="info-box">
+            <h2 style="font-family:'Orbitron'; color:var(--p-glow);">VISIT OUR HUB</h2>
+            <p style="margin-top: 20px; color: #ccc;">Main Market Street, Near Clock Tower,<br>Digital Plaza, Floor 1</p>
+            <p style="margin-top: 10px;"><b>Phone:</b> +91 8278811213</p>
+            <p><b>Email:</b> hub@friendscybercafe@gmail.com</p>
+            <a href="tel:+91 8278811213" class="btn-call">CALL COMMAND CENTER</a>
+        </div>
+        
+    </div>
+
+    <footer>
+        &copy; 2024 Friends Computer Cyber Hub. All Systems Operational.
+    </footer>
+
+    <script>
+        // --- Same 3D Particle Logic ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            let num = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < num; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 1.5,
+                    speedY: (Math.random() - 0.5) * 1.5
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.speedX; p.y += p.speedY;
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+                let dx = mouse.x - p.x;
+                let dy = mouse.y - p.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < mouse.radius) {
+                    p.x -= dx/20; p.y -= dy/20;
+                }
+
+                ctx.fillStyle = 'rgba(0, 242, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            connect();
+            requestAnimationFrame(animate);
+        }
+
+        function connect() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let dist = ((particles[a].x - particles[b].x)**2 + (particles[a].y - particles[b].y)**2);
+                    if (dist < 15000) {
+                        let opacity = 1 - (dist / 15000);
+                        ctx.strokeStyle = `rgba(0, 242, 255, ${opacity * 0.2})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        window.addEventListener('resize', init);
+        init(); animate();
+    </script>
+</body>
+</html>
