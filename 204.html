@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FRIENDS COMPUTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --p-glow: #00f2ff; --s-glow: #7000ff; --bg: #03070d; --white: #fff; --glass: rgba(16, 24, 39, 0.6); }
+        
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--white); 
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- 3D Background Canvas --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a192f 0%, #03070d 100%);
+        }
+
+        /* Navigation */
+        nav { 
+            background: rgba(0,0,0,0.8); 
+            backdrop-filter: blur(10px);
+            padding:1rem 5%; 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            position:sticky; 
+            top:0; 
+            z-index:100; 
+            border-bottom:1px solid var(--p-glow); 
+        }
+        .logo { font-family:'Orbitron'; font-size:1.5rem; color:var(--p-glow); text-shadow: 0 0 10px var(--p-glow); text-decoration: none;}
+        nav ul { display:flex; list-style:none; }
+        nav ul li a { color:white; text-decoration:none; margin-left:20px; font-size:0.9rem; transition:0.3s; }
+        nav ul li a:hover { color:var(--p-glow); }
+
+        /* Header */
+        .contact-header { 
+            padding: 60px 10% 20px; 
+            text-align: center; 
+        }
+        .contact-header h1 { 
+            font-family: 'Orbitron'; 
+            font-size: 3.5rem; 
+            color: var(--white); 
+            text-shadow: 0 0 20px var(--p-glow);
+            margin-bottom: 10px;
+        }
+
+        /* Layout Grid */
+        .contact-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 40px; 
+            padding: 40px 10%; 
+        }
+
+        /* Info Boxes */
+        .info-box { 
+            background: var(--glass); 
+            backdrop-filter: blur(10px);
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            margin-bottom: 20px;
+            transition: 0.4s;
+        }
+        .info-box:hover { 
+            border-color: var(--p-glow); 
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+        }
+        .info-box h3 { font-family: 'Orbitron'; color: var(--p-glow); margin-bottom: 10px; }
+
+        /* Futuristic Form */
+        .contact-form { 
+            background: var(--glass); 
+            backdrop-filter: blur(15px);
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(112, 0, 255, 0.3); 
+        }
+        .contact-form h2 { font-family: 'Orbitron'; margin-bottom: 25px; color: var(--white); text-align: center; }
+        
+        .input-group { margin-bottom: 20px; }
+        .input-group input, .input-group textarea, .input-group select { 
+            width: 100%; 
+            padding: 12px; 
+            background: rgba(0,0,0,0.5); 
+            border: 1px solid #333; 
+            color: white; 
+            border-radius: 8px; 
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-group input:focus { border-color: var(--p-glow); box-shadow: 0 0 10px rgba(0, 242, 255, 0.3); }
+        
+        .submit-btn { 
+            width: 100%; 
+            padding: 15px; 
+            background: var(--s-glow); 
+            color: white; 
+            border: none; 
+            font-family: 'Orbitron'; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border-radius: 8px; 
+            transition: 0.4s;
+            text-transform: uppercase;
+        }
+        .submit-btn:hover { background: var(--p-glow); color: black; box-shadow: 0 0 30px var(--p-glow); }
+
+        /* Map Section */
+        .map-section { padding: 40px 10% 100px; }
+        .map-box { 
+            width: 100%; 
+            height: 300px; 
+            background: var(--glass); 
+            border-radius: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--p-glow);
+            font-family: 'Orbitron';
+        }
+
+        @media (max-width: 768px) {
+            .contact-header h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <a href="index.html" class="logo">FRIENDS <span>COMPUTER</span></a>
+      
+    </nav>
+
+    <header class="contact-header">
+        <h1>GET IN TOUCH</h1>
+        <p style="color: #cbd5e1; font-size: 1.1rem;">Establishing a secure connection with our support team...</p>
+    </header>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <div class="info-box">
+                <h3>MAIN HUB LOCATION</h3>
+                <p>Main Market Road, VPO  CHAUNTRA, TEH.JOGINDER NAGAR, DISTT. MANDI, HP,India</p>
+            </div>
+            <div class="info-box">
+                <h3>SECURE HOTLINE</h3>
+                <p>Primary: +91 8278811213<br>Support: +91 8679428504</p>
+            </div>
+            <div class="info-box">
+                <h3>DIGITAL MAIL</h3>
+                <p>friendscybercafe03@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>SEND MESSAGE</h2>
+            <form action="#">
+                <div class="input-group">
+                    <input type="text" placeholder="IDENTITY (Full Name)" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="ENCRYPTION (Email ID)" required>
+                </div>
+                <div class="input-group">
+                    <select>
+                        <option>SELECT SUBJECT</option>
+                        <option>Course Admission</option>
+                        <option>Govt Services</option>
+                        <option>Technical Support</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <textarea rows="4" placeholder="YOUR MESSAGE..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SEND TO SERVER</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="map-section">
+        <div class="map-box">
+            <p>[ SATELLITE LOCATION PREVIEW ]</p>
+        </div>
+    </section>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            let num = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < num; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 1.5,
+                    speedY: (Math.random() - 0.5) * 1.5
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.speedX; p.y += p.speedY;
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+                let dx = mouse.x - p.x;
+                let dy = mouse.y - p.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < mouse.radius) { p.x -= dx/20; p.y -= dy/20; }
+
+                ctx.fillStyle = 'rgba(0, 242, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            connect();
+            requestAnimationFrame(animate);
+        }
+
+        function connect() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let dist = ((particles[a].x - particles[b].x)**2 + (particles[a].y - particles[b].y)**2);
+                    if (dist < 15000) {
+                        let opacity = 1 - (dist / 15000);
+                        ctx.strokeStyle = `rgba(0, 242, 255, ${opacity * 0.2})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('resize', init);
+        init(); animate();
+    </script>
+</body>
+</html>
