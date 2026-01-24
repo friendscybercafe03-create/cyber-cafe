@@ -184,6 +184,29 @@
         @media (max-width: 768px) {
             .contact-header h1 { font-size: 2.2rem; }
         }
+/* Input fields ke andar ka text white dikhne ke liye */
+.input-group input::placeholder, 
+.input-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-group input, 
+.input-group textarea {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    font-size: 1rem;
+    margin-bottom: 15px; /* Spacing ke liye */
+}
+
+/* Submit button ki glow styling */
+.submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 1px;
+}
     </style>
 </head>
 <body>
@@ -223,26 +246,24 @@
 
         <div class="contact-form">
             <h2>SEND MESSAGE</h2>
-            <form action="#">
-                <div class="input-group">
-                    <input type="text" placeholder="IDENTITY (Full Name)" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" placeholder="ENCRYPTION (Email ID)" required>
-                </div>
-                <div class="input-group">
-                    <select>
-                        <option>SELECT SUBJECT</option>
-                        <option>Course Admission</option>
-                        <option>Govt Services</option>
-                        <option>Technical Support</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <textarea rows="4" placeholder="YOUR MESSAGE..."></textarea>
+
+  <div class="input-group">
+<form action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="6aa2680b-91ab-40db-bc28-0f2bf5d2b9c4">
+  
+                    <input type="text" name="name" placeholder="Name" required>
+   <input type="text" name="email" placeholder="Email" required>
+ <input type="text" name="contact" placeholder="Contact no." required>
+   
+ <textarea name="message" placeholder="YOUR MESSAGE..." required></textarea>
+                   
                 </div>
                 <button type="submit" class="submit-btn">SEND TO SERVER</button>
-            </form>
+</form>
+
+
+
+            
         </div>
     </div>
 
