@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Govt Services - FRIENDS COMPUTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --p-glow: #00f2ff; --s-glow: #7000ff; --bg: #03070d; --white: #fff; --card-bg: rgba(16, 24, 39, 0.4); --gold: #ffcc00; }
+        
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        
+        body { 
+            background: #010a08; 
+            color: var(--white); 
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- Updated Nature Background (Same as Main Page) --- */
+        .nature-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -3;
+            background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Sun Flare Effect */
+        .sun-glow {
+            position: fixed;
+            top: -10%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,255,200,0.2) 0%, rgba(255,255,255,0) 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Moving Clouds Layer */
+        .clouds {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/clouds.png');
+            opacity: 0.3;
+            z-index: -2;
+            animation: moveClouds 120s linear infinite;
+        }
+
+        @keyframes moveClouds {
+            from { background-position: 0 0; }
+            to { background-position: 10000px 0; }
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav { 
+            background: rgba(0,0,0,0.6); 
+            backdrop-filter: blur(15px);
+            padding:1rem 5%; 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            position:sticky; 
+            top:0; 
+            z-index:100; 
+            border-bottom:2px solid var(--p-glow); 
+        }
+        .logo { font-family:'Orbitron'; font-size:1.5rem; color:var(--p-glow); text-decoration:none; text-shadow: 0 0 10px var(--p-glow); }
+        nav ul { display:flex; list-style:none; }
+        nav ul li a { color:white; text-decoration:none; margin-left:20px; font-size:0.9rem; transition:0.3s; }
+        nav ul li a:hover { color:var(--p-glow); }
+
+        /* Header Section */
+        .page-header { 
+            padding: 80px 10% 40px; 
+            text-align: center; 
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+        }
+        .page-header h1 { 
+            font-family: 'Orbitron'; 
+            font-size: clamp(2rem, 5vw, 3rem); 
+            color: var(--gold); 
+            margin-bottom: 15px; 
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Services Grid */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+            padding: 40px 10%; 
+        }
+
+        .service-card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px);
+            padding: 35px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover { 
+            border-color: var(--p-glow); 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 40px rgba(0, 242, 255, 0.2);
+            background: rgba(16, 24, 39, 0.7);
+        }
+        .service-card h3 { 
+            font-family: 'Orbitron'; 
+            color: var(--p-glow); 
+            margin-bottom: 20px; 
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 5px black;
+        }
+        .service-card ul { list-style: none; color: #e2e8f0; font-size: 0.95rem; }
+        .service-card ul li { margin-bottom: 12px; display: flex; align-items: center; text-shadow: 1px 1px 3px black; }
+        .service-card ul li::before { content: '?'; color: var(--gold); margin-right: 12px; font-weight: bold; }
+
+        .tag { 
+            position: absolute; top: 15px; right: -35px; 
+            background: var(--gold); color: black; 
+            padding: 5px 40px; font-size: 0.75rem; 
+            font-weight: 800; transform: rotate(45deg); 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* CTA Section */
+        .cta-section { 
+            text-align: center; 
+            padding: 80px 10%; 
+            background: rgba(0,0,0,0.3); 
+        }
+        .btn-back { 
+            display: inline-block; padding: 14px 35px; 
+            background: var(--p-glow); border: none; 
+            color: black; text-decoration: none; 
+            font-family: 'Orbitron'; border-radius: 8px; transition: 0.3s;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .btn-back:hover { 
+            background: #fff; 
+            box-shadow: 0 0 30px var(--p-glow);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nature-bg"></div>
+    <div class="sun-glow"></div>
+    <div class="clouds"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <a href="new6.html" class="logo">FRIENDS <span>COMPUTER</span></a>
+        <ul>
+          
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>GOVERNMENT SERVICES PORTAL</h1>
+        <p style="color:#eee; font-size: 1.1rem; text-shadow: 1px 1px 5px black;">Authorized Center for CSC, E-District & Digital India Services</p>
+    </header>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>IDENTITY CARDS</h3>
+            <ul>
+                <li>New Aadhaar / Update</li>
+                <li>Voter ID Card</li>
+                <li>PAN Card (Instant & Physical)</li>
+                <li>Ration Card Services</li>
+            </ul>
+        </div>
+
+        <div class="service-card">
+            <div class="tag">POPULAR</div>
+            <h3>CERTIFICATES</h3>
+            <ul>
+                <li>Income Certificate</li>
+                <li>Caste (ST/SC/OBC)</li>
+                <li>Domicile / Bonafide</li>
+                <li>EWS Certificate</li>
+            </ul>
+        </div>
+
+        <div class="service-card">
+            <h3>TRANSPORT (RTO)</h3>
+            <ul>
+                <li>Learning Licence</li>
+                <li>Permanent Driving Licence</li>
+                <li>Vehicle RC Transfer</li>
+                <li>HSRP Number Plate</li>
+            </ul>
+        </div>
+
+        <div class="service-card">
+            <h3>FINANCIAL</h3>
+            <ul>
+                <li>PM Kisan Registration</li>
+                <li>Labour Card (E-Shram)</li>
+                <li>Pension Schemes</li>
+                <li>GST Registration & Filing</li>
+            </ul>
+        </div>
+
+        <div class="service-card">
+            <h3>BANKING & LOAN</h3>
+            <ul>
+                <li>Cash Withdrawal (AEPS)</li>
+                <li>Money Transfer</li>
+                <li>CIBIL Score Check</li>
+                <li>Insurance (Bike/Car/Life)</li>
+            </ul>
+        </div>
+
+        <div class="service-card">
+            <h3>DIGITAL HELP</h3>
+            <ul>
+                <li>Passport Application</li>
+                <li>Online Exam Forms</li>
+                <li>Electricity Bill Payment</li>
+                <li>Scholarship Forms</li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <h2 style="margin-bottom:20px; font-family:'Orbitron';">Need immediate assistance?</h2>
+        <p style="margin-bottom:30px; color:#ddd; text-shadow: 1px 1px 3px black;">Visit our center with your original documents for high-speed processing.</p>
+      
+    </section>
+
+     <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            petals = [];
+            for (let i = 0; i < 40; i++) {
+                petals.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 5 + 2,
+                    speedY: Math.random() * 1 + 0.5,
+                    speedX: Math.random() * 1 - 0.5,
+                    angle: Math.random() * 360,
+                    spin: Math.random() * 2 - 1
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.6)"; // White petals / Pollen effect
+            
+            petals.forEach(p => {
+                p.y += p.speedY;
+                p.x += p.speedX + Math.sin(p.y / 50);
+                p.angle += p.spin;
+
+                if (p.y > canvas.height) p.y = -10;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.x < 0) p.x = canvas.width;
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.angle * Math.PI / 180);
+                // Draw petal shape
+                ctx.beginPath();
+                ctx.ellipse(0, 0, p.size, p.size/2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+    </script>
+</body>
+</html>
