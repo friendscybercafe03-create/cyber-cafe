@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FRIENDS COMPUTER | 3D FUTURE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --p-glow: #00ff88; /* Fresh Green Glow */
+            --s-glow: #00d4ff; 
+            --bg-overlay: rgba(3, 15, 13, 0.3); 
+            --white: #fff; 
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        
+        body { 
+            background: #010a08; 
+            color: var(--white); 
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- Updated Nature Background --- */
+        .nature-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -3;
+            /* Aapki di gayi photo jaisa background image */
+            background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Suraj ki Roshni (Sun Flare) Effect */
+        .sun-glow {
+            position: fixed;
+            top: -10%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,255,200,0.25) 0%, rgba(255,255,255,0) 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Behte hue Badal (Moving Clouds) Layer */
+        .clouds {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/clouds.png');
+            opacity: 0.35;
+            z-index: -2;
+            animation: moveClouds 120s linear infinite;
+        }
+
+        @keyframes moveClouds {
+            from { background-position: 0 0; }
+            to { background-position: 10000px 0; }
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Nav & Layout (As per original) --- */
+        nav { 
+            background: rgba(0, 40, 30, 0.5); 
+            backdrop-filter: blur(15px);
+            padding:1rem 5%; 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            position:sticky; 
+            top:0; 
+            z-index:100; 
+            border-bottom:1px solid rgba(255,255,255,0.1); 
+        }
+
+        .logo { font-family:'Orbitron'; font-size:1.5rem; color:var(--p-glow); text-shadow: 0 0 15px var(--p-glow); }
+        
+        nav ul { display:flex; list-style:none; }
+        nav ul li a { color:white; text-decoration:none; margin-left:20px; font-size:0.9rem; transition:0.3s; }
+        nav ul li a:hover { color:var(--p-glow); }
+
+        .hero { 
+            height:85vh; 
+            display:flex; 
+            flex-direction:column; 
+            justify-content:center; 
+            align-items:center; 
+            text-align:center;
+            background: var(--bg-overlay);
+        }
+
+        .hero h1 { 
+            font-family: 'Orbitron'; 
+            font-size: clamp(3rem, 8vw, 7rem); 
+            color: #fff;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.8), 0 0 30px var(--p-glow);
+            letter-spacing: 5px;
+        }
+
+        .hero h2 { font-family:'Orbitron'; font-size:1.5rem; color: #ccff00; margin-top: 10px; text-shadow: 1px 1px 10px #000; }
+        .hero p { margin:20px 0; font-size:1.2rem; max-width:750px; color: #e0f2f1; text-shadow: 1px 1px 5px #000; }
+
+        .main-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px; padding:80px 10%; }
+        
+        .feature-card { 
+            background: rgba(255, 255, 255, 0.12); 
+            backdrop-filter: blur(12px);
+            padding:40px; 
+            border-radius:24px; 
+            text-align:center; 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            transition: 0.4s ease;
+        }
+
+        .feature-card:hover { 
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--p-glow);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .btn { 
+            display:inline-block; 
+            padding:12px 35px; 
+            background: var(--p-glow); 
+            color:#003322; 
+            text-decoration:none; 
+            font-weight:700; 
+            border-radius:50px; 
+            margin-top:20px; 
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn:hover { background: #fff; transform: scale(1.05); box-shadow: 0 0 20px var(--p-glow); }
+
+        .terminal-box {
+            background: rgba(0, 50, 40, 0.55);
+            backdrop-filter: blur(8px);
+            padding:30px;
+            border-radius:20px;
+            border-bottom: 4px solid var(--p-glow);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="nature-bg"></div>
+    <div class="sun-glow"></div>
+    <div class="clouds"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <div class="logo">FUTURE READY DIGITAL <span>_CENTER</span></div>
+        <ul>
+            <li><a href="2005.html">GOVT SERVICES</a></li>
+            <li><a href="2003.html">COMPUTER COURSES</a></li>
+            <li><a href="2004.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>FRIENDS COMPUTER</h1>
+        <h2>COMPUTER INSTITUTE & LOK MITRA KENDRA & CYBER CAFE</h2>
+        <p>Expert Government Services, High-End Professional Training, and Cutting-Edge Cyber Solutions.</p>
+        <a href="#services" class="btn">Start Your Journey</a>
+    </section>
+
+    <div class="main-grid" id="services">
+        <div class="feature-card">
+            <h2>LOK MITRA</h2>
+            <p>PAN, Passport, Aadhar & all CSC Services with 100% accuracy.</p>
+            <button class="btn" onclick="window.location.href='2005.html';">View Services</button>
+        </div>
+        <div class="feature-card">
+            <h2>ACADEMY</h2>
+            <p>Master DCA, PGDCA, Graphic Design, and Web Development.</p>
+            <a href="2006.html" class="btn">Explore Courses</a>
+        </div>
+        <div class="feature-card">
+            <h2>CYBER HUB</h2>
+            <p>High-speed internet and premium printing at your service.</p>
+            <a href="2007.html" class="btn">Visit Us</a>
+        </div>
+    </div>
+
+    <section style="padding:100px 10%;">
+        <h2 style="font-family:'Orbitron'; text-align:center; color:#ffcc00; font-size:2.5rem; margin-bottom:50px;">LOK MITRA TERMINAL</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:25px;">
+            <div class="terminal-box">
+                <h3 style="color:#ffcc00;">KYC CENTER</h3>
+                <p style="color:#ccc; font-size:0.9rem; margin-top:10px;">Update Mobile, Address, and PVC Booking.</p>
+            </div>
+            <div class="terminal-box">
+                <h3 style="color:#ffcc00;">LICENCE DESK</h3>
+                <p style="color:#ccc; font-size:0.9rem; margin-top:10px;">All types of driving licences applied here.</p>
+            </div>
+            <div class="terminal-box">
+                <h3 style="color:#ffcc00;">REVENUE DEPT</h3>
+                <p style="color:#ccc; font-size:0.9rem; margin-top:10px;">Income, Caste, and Domicile Certificates.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding:100px 10%; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:50px;">
+        <div>
+            <h2 style="font-family:'Orbitron'; color:#7000ff; margin-bottom:20px;">CONTACT US</h2>
+            <p style="font-size: 1.2rem;"><b>Friends Computer</b></p>
+            <p>?? +91 8278811213</p>
+            <p>?? friendscybercafe03@gmail.com</p>
+            <br>
+            <h3 style="color:#00f2ff;">WORKING HOURS</h3>
+            <p>Mon - Sat: 09:00 AM - 06:00 PM</p>
+        </div>
+        <div style="background:rgba(16, 24, 39, 0.7); padding:40px; border-radius:20px; backdrop-filter: blur(10px); border: 1px solid #222;">
+            <h3>Quick Inquiry</h3>
+            <input type="text" placeholder="Your Name" style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:none;">
+            <textarea placeholder="How can we help you?" style="width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:none; height:100px;"></textarea>
+            <button class="btn" style="width: 100%; background: var(--s-glow); color: white;">Send Message</button>
+        </div>
+    </section>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            petals = [];
+            for (let i = 0; i < 40; i++) {
+                petals.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 5 + 2,
+                    speedY: Math.random() * 1 + 0.5,
+                    speedX: Math.random() * 1 - 0.5,
+                    angle: Math.random() * 360,
+                    spin: Math.random() * 2 - 1
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.6)"; // White petals / Pollen effect
+            
+            petals.forEach(p => {
+                p.y += p.speedY;
+                p.x += p.speedX + Math.sin(p.y / 50);
+                p.angle += p.spin;
+
+                if (p.y > canvas.height) p.y = -10;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.x < 0) p.x = canvas.width;
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.angle * Math.PI / 180);
+                // Draw petal shape
+                ctx.beginPath();
+                ctx.ellipse(0, 0, p.size, p.size/2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+    </script>
+
+</body>
+</html>
